@@ -14,7 +14,9 @@ export class TodoListComponent implements OnInit {
 
   @Input()status: string;
 
- 
+constructor(private todoService: TodoService) {
+
+}
 
   ngOnInit() {
   }

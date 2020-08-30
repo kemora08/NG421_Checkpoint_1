@@ -1,10 +1,10 @@
 <div class="view">
-    <label {dblclick}="isEditing = true" [hidden]= "isEditing">{{todo.title}}</label>
+    <label (dblclick)="isEditing = true" [hidden]= "isEditing">{{todo.title}}</label>
     <div class = "float-right">
         <button type="button" (click)="editTodo(todo)" class="btn btn-danger btn-sm">Edit</button>
     <input type="text" [(ngModel)]="todo.title" *ngIf="isEditing" (blur)= "isEditing = false">
     <div class="float-right">
-        <button type="button" (click)= "deleteTodo(todo)" class="btn btn-danger btn-sm">Delete</button>
+        <button type="button" (click)="deleteTodo(todo)" class="btn btn-danger btn-sm">Delete</button>
     </div>
     <div class="d-flex justify-content-center"></div>
         <label>{{todo.description}}</label>

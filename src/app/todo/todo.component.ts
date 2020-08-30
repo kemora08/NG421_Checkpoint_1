@@ -39,7 +39,7 @@ export class TodoComponent implements OnInit {
     modal.componentInstance.modalInstance = modal;
     modal.componentInstance.todo = todo;
 
-    const result = yield modal.result;
+    const result = await modal.result;
     this.todo = result;
 }
 
