@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ITodo} from '../interfaces/itodo';
+import { ReturnStatement } from '@angular/compiler';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,9 +11,15 @@ export class TodoService {
     { title: 'Install Angular CLI', id: this.todoId, status: 'Todo', createdAt: 'Doing', description: 'Done' },
 
   ];
+
+  statuses: string[] = ['Todo', 'Doing', 'Done'];
   constructor() { }
-  getTodos() {
+  getTodos(status?: string): ITodo[] {
+   if (!status) {
     return this.todoList;
+   }
+
+   return this.todoList.filter(t => t.status === status);
   }
   deleteTodo(todo: ITodo) {
     const index = this.todoList.findIndex(todoItem => todoItem === todo);
@@ -21,5 +28,9 @@ export class TodoService {
   addTodo(todo: ITodo): void {
     todo.id = this.todoId ++;
     this.todoList.push(todo);
+  }
+
+  getStatuses(): string[] {
+    return this.statuses;
   }
 }
