@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import {TodoService} from '../services/todo.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
+import { TodoEditComponent } from '../todo-edit/todo-edit.component';
+import { ITodo } from '../interfaces/itodo';
 
 @Component({
   selector: 'app-todo',
@@ -18,7 +20,7 @@ export class TodoComponent implements OnInit {
   ngOnInit() {
     this.statuses = this.todoService.getStatuses();
   }
-  async deleteTodo(todo) {
+  async deleteTodo(todo): Promise<void> {
     let result;
     const modal = this.modalService.open(ConfirmationModalComponent);
     modal.componentInstance.modalInstance = modal;
@@ -32,5 +34,13 @@ export class TodoComponent implements OnInit {
     }
   }
 
+  async editTodo(todo: ITodo): Promise<void> {
+    const modal = this.modalService.open(TodoEditComponent);
+    modal.componentInstance.modalInstance = modal;
+    modal.componentInstance.todo = todo;
+
+    const result = yield modal.result;
+    this.todo = result;
+}
 
 }
