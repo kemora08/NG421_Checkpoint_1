@@ -11,8 +11,16 @@ import {RouterModule } from '@angular/router';
 import { BoardComponent } from './board/board.component';
 import { TodoEditComponent } from './todo-edit/todo-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { TodoTableComponent } from './todo-table/todo-table.component';
 
-const routes = [];
+const routes = [
+ {path: 'Table', component: TodoTableComponent},
+ {path: 'Board', component: BoardComponent},
+ {path: '', redirectTo: '/Table', pathMatch: 'full'}];
 const appRoutes = RouterModule.forRoot(routes);
 
 @NgModule({
@@ -24,13 +32,18 @@ const appRoutes = RouterModule.forRoot(routes);
     ConfirmationModalComponent,
     BoardComponent,
     TodoEditComponent,
+    TodoTableComponent
   ],
   imports: [
     BrowserModule,
     appRoutes,
     FormsModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
